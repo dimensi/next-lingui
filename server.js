@@ -12,13 +12,13 @@ const options = {
   locales: ['ru', 'en'],
   defaultLocale: 'ru',
   subPaths: true,
-  ignoreRoutes: ['_next', 'static']
+  ignoreRoutes: ['_next', 'static'],
 }
 async function start () {
   await app.prepare()
   const server = express()
   server.use(cookieParser())
-  server.use(linguiMiddleware(options, app))
+  server.use(linguiMiddleware(options))
 
   server.get('*', (req, res) => handle(req, res))
 
