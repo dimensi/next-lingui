@@ -1,11 +1,11 @@
 {
-  "localeDir": "src/locales/",
-  "srcPathDirs": ["src/", "pages/"],
+  "localeDir": "locales/",
+  "srcPathDirs": ["pages/"],
   "srcPathIgnorePatterns": [
         "/node_modules/",
         "/.next/",
   ],
   "format": "minimal",
-  "sourceLocale": "ru",
-  "compileNamespace": "window.LINGUI_CATALOG"
+  "sourceLocale": "en",
+  "compileNamespace": "cjs"
 }

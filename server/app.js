@@ -1,7 +1,7 @@
-const express = require('express')
-const next = require('next')
-const cookieParser = require('cookie-parser')
-const linguiMiddleware = require('./lib/middleware')
+import express from 'express'
+import next from 'next'
+import cookieParser from 'cookie-parser'
+import { createMiddleware } from '../lib/middleware'
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -9,16 +9,17 @@ const app = next({ dev })
 const handle = app.getRequestHandler()
 
 const options = {
-  locales: ['ru', 'en'],
-  defaultLocale: 'ru',
+  locales: ['en', 'ru'],
+  defaultLocale: 'en',
   subPaths: true,
   ignoreRoutes: ['_next', 'static'],
 }
+
 async function start () {
   await app.prepare()
   const server = express()
   server.use(cookieParser())
-  server.use(linguiMiddleware(options))
+  server.use(createMiddleware(options))
 
   server.get('*', (req, res) => handle(req, res))
 
